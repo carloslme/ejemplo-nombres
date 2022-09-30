@@ -48,6 +48,9 @@ jobs:
           python-version: "3.8"
       - name: flake8 Lint
         uses: py-actions/flake8@v2
+        run: |
+          # ignore errors
+          flake8 --ignore=F403, F401, E402 
 
   pytest:
     needs: flake8-lint # Depends on previous job
@@ -75,7 +78,7 @@ jobs:
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
         # ignore errors
-        flake8 --ignore=F403, F401
+        flake8 --ignore=F403, F401, E402 
     - name: Test with pytest
       run: |
         pytest ejemplo/tests/unit/test_nombres.py -v
