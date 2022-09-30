@@ -50,7 +50,7 @@ jobs:
         uses: py-actions/flake8@v2
 
   pytest:
-    needs: flake8-lint
+    needs: flake8-lint # Depends on previous job
     # The type of runner that the job will run on
     runs-on: ubuntu-latest 
     timeout-minutes: 10
@@ -74,6 +74,8 @@ jobs:
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+        # ignore errors
+        flake8 --ignore=F403, F401
     - name: Test with pytest
       run: |
         pytest ejemplo/tests/unit/test_nombres.py -v
