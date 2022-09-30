@@ -1,9 +1,12 @@
+from pathlib import Path
 import sys
 
-sys.path.append("ejemplo/app")
-sys.path.append("../")
-
 import pytest
+
+# Add root to sys.path
+# https://fortierq.github.io/python-import/
+path_root = Path(__file__).parents[3]
+sys.path.append(str(path_root))
 
 from ejemplo.app.funciones import procesar_nombre
 from ejemplo.app.funciones import procesar_apellido_paterno

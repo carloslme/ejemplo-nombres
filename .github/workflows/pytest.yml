@@ -7,7 +7,7 @@ name: flake8 Lint + Pytest
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ ejemplo ]
+    branches: [ main ]
   pull_request:
     branches: [ main ]
 
@@ -76,4 +76,5 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        pytest
+        pytest ejemplo/tests/unit/test_nombres.py -v
+        pytest ejemplo/tests/integration/test_integracion.py -v
