@@ -11,6 +11,7 @@ sys.path.append(str(path_root))
 from ejemplo.app.funciones import procesar_nombre
 from ejemplo.app.funciones import procesar_apellido_paterno
 from ejemplo.app.funciones import procesar_apellido_materno
+from ejemplo.app.funciones import generar_usuario
 
 
 # Pruebas para el nombre
@@ -41,3 +42,16 @@ def obtener_datos_test_am():
 @pytest.mark.parametrize("am, esperado", obtener_datos_test_am())
 def test_am_parametrize(am, esperado):
     assert procesar_apellido_materno(am) == esperado
+
+
+# Pruebas para generar usuario
+def obtener_datos_test_usuario():
+    return [
+        ("carlos", "LOPEZ", "meJIa", "car.lopm"),
+        ("ivan", "huERTA", "CoroNA", "iva.huec"),
+    ]
+
+
+@pytest.mark.parametrize("nombre, ap, am, esperado", obtener_datos_test_usuario())
+def test_usuario_parametrize(nombre, ap, am, esperado):
+    assert generar_usuario(nombre, ap, am) == esperado
