@@ -3,14 +3,14 @@ import sys
 
 import pytest
 
+from ejemplo.app.funciones import procesar_nombre
+from ejemplo.app.funciones import procesar_apellido_paterno
+from ejemplo.app.funciones import procesar_apellido_materno
+
 # Add root to sys.path
 # https://fortierq.github.io/python-import/
 path_root = Path(__file__).parents[3]
 sys.path.append(str(path_root))
-
-from ejemplo.app.funciones import procesar_nombre
-from ejemplo.app.funciones import procesar_apellido_paterno
-from ejemplo.app.funciones import procesar_apellido_materno
 
 # Pruebas para el nombre
 def obtener_datos_test_nombre():

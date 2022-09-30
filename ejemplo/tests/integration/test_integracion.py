@@ -3,14 +3,15 @@ import sys
 
 import pytest
 
+from ejemplo.app.funciones import procesar_nombre
+from ejemplo.app.funciones import procesar_apellido_paterno
+from ejemplo.app.funciones import procesar_apellido_materno
+
 # Add root to sys.path
 # https://fortierq.github.io/python-import/
 path_root = Path(__file__).parents[3]
 sys.path.append(str(path_root))
 
-from ejemplo.app.funciones import procesar_nombre
-from ejemplo.app.funciones import procesar_apellido_paterno
-from ejemplo.app.funciones import procesar_apellido_materno
 
 
 def concatenar_nombre_completo(nombre, ap, am):
@@ -24,7 +25,8 @@ def obtener_datos_test_integracion():
     ]
 
 
-@pytest.mark.parametrize("nombre, ap, am, esperado", obtener_datos_test_integracion())
+@pytest.mark.parametrize("nombre, ap, am, esperado", 
+                        obtener_datos_test_integracion())
 def test_divide_parametrize(nombre, ap, am, esperado):
     assert (
         procesar_nombre(nombre)
