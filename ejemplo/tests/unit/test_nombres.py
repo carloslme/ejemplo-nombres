@@ -1,6 +1,6 @@
 from pathlib import Path
 import sys
- 
+
 import pytest
 
 # Add root to sys.path
