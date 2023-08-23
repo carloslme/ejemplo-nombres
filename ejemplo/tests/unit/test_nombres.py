@@ -1,15 +1,17 @@
-import sys
 from pathlib import Path
-
+import sys
+ 
 import pytest
-
-from ejemplo.app.funciones import (generar_usuario, procesar_apellido_materno,
-                                   procesar_apellido_paterno, procesar_nombre)
 
 # Add root to sys.path
 # https://fortierq.github.io/python-import/
 path_root = Path(__file__).parents[3]
 sys.path.append(str(path_root))
+
+from ejemplo.app.funciones import procesar_nombre
+from ejemplo.app.funciones import procesar_apellido_paterno
+from ejemplo.app.funciones import procesar_apellido_materno
+from ejemplo.app.funciones import generar_usuario
 
 
 # Pruebas para el nombre
@@ -50,7 +52,6 @@ def obtener_datos_test_usuario():
     ]
 
 
-@pytest.mark.parametrize("nombre, ap, am, esperado",
-                         obtener_datos_test_usuario())
+@pytest.mark.parametrize("nombre, ap, am, esperado", obtener_datos_test_usuario())
 def test_usuario_parametrize(nombre, ap, am, esperado):
     assert generar_usuario(nombre, ap, am) == esperado

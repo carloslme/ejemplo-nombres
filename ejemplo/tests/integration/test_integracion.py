@@ -1,15 +1,19 @@
-import sys
 from pathlib import Path
+import sys
 
 import pytest
 
-from ejemplo.app.funciones import (generar_usuario, procesar_apellido_materno,
-                                   procesar_apellido_paterno, procesar_nombre)
+import os
 
 # Add root to sys.path
 # https://fortierq.github.io/python-import/
 path_root = Path(__file__).parents[3]
 sys.path.append(str(path_root))
+
+from ejemplo.app.funciones import procesar_nombre
+from ejemplo.app.funciones import procesar_apellido_paterno
+from ejemplo.app.funciones import procesar_apellido_materno
+from ejemplo.app.funciones import generar_usuario
 
 
 def concatenar_nombre_completo(nombre, ap, am):
@@ -39,5 +43,5 @@ def test_divide_parametrize(nombre, ap, am, esperado, usuario):
         + am_procesado
         + " "
         + generar_usuario(nombre_procesado, ap_procesado, am_procesado)
-        == f"{esperado} {usuario}"
+        == esperado + " " + usuario
     )
